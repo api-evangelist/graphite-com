@@ -1,0 +1,20 @@
+{
+  "provider": "graphite-com",
+  "sources": [
+    "graphite-com-authentication-api-openapi.yml",
+    "graphite-com-github-app-api-openapi.yml",
+    "graphite-com-merge-queue-api-openapi.yml",
+    "graphite-com-stacks-api-openapi.yml"
+  ],
+  "outputs": [
+    "graphite-com-authentication-api-openapi.yml",
+    "graphite-com-github-app-api-openapi.yml",
+    "graphite-com-merge-queue-api-openapi.yml",
+    "graphite-com-stacks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

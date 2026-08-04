@@ -1,0 +1,67 @@
+generated: '2026-08-04'
+method: searched
+source: https://graphite.com/docs/cli-changelog
+versioning:
+  scheme: semver
+  applies_to: Graphite CLI (gt)
+  current: 1.8.6
+  current_released: '2026-05-04'
+  channels:
+  - {name: stable, npm_dist_tag: stable, homebrew_formula: graphite}
+  - {name: beta, npm_dist_tag: beta, homebrew_formula: graphite-beta}
+  - {name: alpha, homebrew_formula: graphite-alpha}
+  version_history: https://www.npmjs.com/package/@withgraphite/graphite-cli?activeTab=versions
+  docs: https://graphite.com/docs/cli-changelog
+  note: >-
+    The web app and merge queue are continuously deployed and carry no public
+    version number; the CLI is the only publicly versioned surface.
+upgrade:
+  command: gt upgrade
+  docs: https://graphite.com/docs/update-cli
+  prompt: >-
+    The CLI prints an upgrade prompt at the end of command output (moved there in
+    1.8.6 for visibility); an auto-updater keeps beta users on their channel.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal, published deprecation or sunset policy was found. Graphite does
+    practise deprecation at the command level — the v1 release replaced the
+    noun-verb command names with a flat scheme and emits deprecation warnings for
+    legacy names, mitigated by a documented legacy alias preset.
+  observed:
+  - kind: command-rename
+    docs: https://graphite.com/docs/cli-v1-command-names
+    mitigation: https://graphite.com/docs/legacy-alias-preset
+    detail: >-
+      "gt branch create" -> "gt create", "gt commit amend" -> "gt modify",
+      "gt downstack submit" -> "gt submit", and ~30 further renames, with a
+      user-editable ~/.graphite_aliases file to retain the old names.
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime commitment was found on the marketing or docs site.
+status_page:
+  url: https://status.graphite.com
+  provider: Instatus
+  http_status: 200
+  probed: '2026-08-04'
+support:
+  email: support@graphite.com
+  community: https://community.graphite.com
+  feedback_command: gt feedback
+  docs: https://graphite.com/docs/feature-requests-bugs
+company:
+  legal_name: Screenplay Studios, Inc.
+  headquarters: New York City, United States
+  founded: 2020
+  acquired_by: Anysphere (Cursor)
+  acquired: '2025-12'
+  status: operating as an independent product with deeper Cursor integrations planned through 2026
+deprecated_operations: []
+x-evidence:
+  fetched: '2026-08-04'
+  urls:
+  - {url: 'https://graphite-58cc94ce.mintlify.dev/docs/cli-changelog.md', http_status: 200}
+  - {url: 'https://status.graphite.com/', http_status: 200}
+  - {url: 'https://graphite.com/roadmap', http_status: 404, note: no public roadmap}

@@ -1,0 +1,48 @@
+generated: '2026-08-04'
+method: searched
+source: https://github.com/withgraphite/agent-skills
+notes: >-
+  Graphite publishes its own Agent Skill in the first-party GitHub repository
+  withgraphite/agent-skills ("Agent skills to help agentic tools work with
+  Graphite", listed on agentskills.io). The skill is saved VERBATIM — it was not
+  generated or derived by API Evangelist. It grounds an agent in the `gt` CLI
+  command surface rather than an HTTP API, because Graphite publishes no public
+  REST API.
+skills:
+- file: graphite-stacked-pull-requests.md
+  name: graphite
+  description: >-
+    Work with Graphite (gt) for stacked PRs - creating, navigating, and managing
+    PR stacks.
+  api: cli/graphite-cli.yml
+  surface: cli
+  allowed_tools:
+  - Bash(gt *)
+  - Bash(git add *)
+  - Bash(git reset *)
+  - Bash(git diff *)
+  - Bash(git status *)
+  - Bash(git stash *)
+  - Bash(git checkout *)
+  - Bash(git rebase *)
+  - Bash(git branch *)
+  - Bash(gh pr *)
+  operations:
+  - gt create
+  - gt modify
+  - gt up
+  - gt down
+  - gt top
+  - gt bottom
+  - gt ls
+  - gt submit
+  - gt restack
+  - gt track
+  - gt rename
+  - gt move
+  source: https://github.com/withgraphite/agent-skills/blob/main/skills/graphite/SKILL.md
+  x-evidence:
+    fetched: '2026-08-04'
+    url: https://raw.githubusercontent.com/withgraphite/agent-skills/HEAD/skills/graphite/SKILL.md
+    http_status: 200
+    verbatim: true

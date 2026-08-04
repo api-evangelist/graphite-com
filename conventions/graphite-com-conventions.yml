@@ -1,0 +1,133 @@
+generated: '2026-08-04'
+method: searched
+source: https://graphite.com/docs/command-reference
+scope: >-
+  Graphite publishes no public HTTP API, so these are not REST request/response
+  conventions. They are the cross-cutting operational semantics of Graphite's
+  actual programmable surface — the `gt` CLI and the GT MCP server that wraps it
+  — which is what an agent is bound by. Recorded honestly as such; nothing here
+  describes an HTTP contract.
+surface: cli+mcp
+authentication:
+  style: bearer token supplied to the client
+  mechanisms:
+  - gt auth --token <token>
+  - GRAPHITE_AUTH_TOKEN environment variable (CLI >= 1.8.3)
+  underlying: GitHub App installation, or a GitHub personal access token
+  see: authentication/graphite-authentication.yml
+idempotency:
+  supported: true
+  style: operation-level (no Idempotency-Key header — there is no HTTP API)
+  key_header: null
+  scope: per branch, per stack, per repository
+  operations:
+  - operation: gt submit
+    idempotent: true
+    evidence: >-
+      "Idempotently force push all branches in the current stack from trunk to
+      the current branch to GitHub, creating or updating distinct pull requests
+      for each." — https://graphite.com/docs/command-reference
+    guarantees:
+    - Creating vs updating is decided per branch, so re-running does not open duplicate PRs.
+    - >-
+      Validates that branches are properly restacked before submitting and fails
+      if there are conflicts, rather than pushing a partial result.
+    - >-
+      Blocks force pushes that would overwrite branches changed since the last
+      submit or get — a lost-update guard on retry.
+    - >-
+      `--always` opts out of the no-op skip and pushes updates even when the
+      branch has not changed (documented as a repair path for an inconsistent
+      stack view).
+  - operation: gt sync
+    idempotent: true
+    evidence: >-
+      Syncs all branches with remote and restacks; re-running converges on the
+      same state.
+  - operation: gt restack
+    idempotent: true
+    evidence: >-
+      "Ensure each branch in the current stack has its parent in its Git commit
+      history, rebasing if necessary." — a no-op when already restacked.
+  dry_run:
+    supported: true
+    flags: ['--dry-run', '-c/--confirm']
+    note: >-
+      `gt submit --dry-run` reports the PRs that would be submitted without
+      pushing; `--confirm` reports them and asks before acting. These are the
+      pre-flight affordances an agent should use before a mutation.
+  non_interactive:
+    flag: --no-interactive
+    note: Required for agent/CI use; skips all interactive prompts.
+  compensation:
+    command: gt undo
+    scope: >-
+      Undoes the most recent Graphite mutations run from the current worktree;
+      exits with an informative error rather than acting if it would need to
+      modify a branch checked out in another worktree.
+    flag: -f/--force
+  conflict_handling:
+    commands: [gt continue, gt abort]
+    note: >-
+      A command halted by a rebase conflict is resumable (`gt continue`) or
+      reversible (`gt abort`) — mutations are not left half-applied silently.
+isolation:
+  worktree_scoped: true
+  since: CLI 1.8.4
+  note: >-
+    `gt` commands only affect the current worktree, and commands refuse to touch
+    a branch checked out in a different worktree. This is the concurrency
+    boundary for parallel agents on one machine.
+  freezing:
+    commands: [gt freeze, gt unfreeze]
+    note: >-
+      Freezing a branch prevents local modification including restacks — an
+      explicit opt-out of automated mutation.
+state:
+  metadata_store: SQLite
+  since: CLI 1.8.0
+  previously: git objects and refs
+  note: >-
+    Branch metadata and caching moved to SQLite so stale metadata is only
+    recomputed when relevant to the executed command.
+naming:
+  branch_convention: '<terse-stack-feature-name>/<terse-description-of-change>'
+  source: https://github.com/withgraphite/agent-skills
+  note: Published by Graphite in its own agent skill.
+versioning:
+  scheme: semver
+  channels: [stable, beta, alpha]
+  see: lifecycle/graphite-lifecycle.yml
+error_envelope:
+  style: CLI exit codes and human-readable messages
+  structured: false
+  note: >-
+    No machine-readable error catalog is published. `gt` surfaces errors as text;
+    the docs carry a troubleshooting page rather than an error-code registry, so
+    no errors/ artifact was written.
+  troubleshooting: https://graphite.com/docs/troubleshooting
+rate_limits:
+  published: false
+  note: >-
+    No published rate limits. Graphite's throughput against GitHub is bounded by
+    the GitHub API limits of the installed App or PAT, not by a Graphite-side
+    quota it documents.
+pagination:
+  applicable: false
+telemetry:
+  logged: >-
+    Repository metadata (branch counts, command counts), usage metadata (commands
+    run, run time, CLI errors), and GitHub account metadata (organization
+    membership).
+  source: https://graphite.com/docs/privacy-and-security
+cross_links:
+  authentication: authentication/graphite-authentication.yml
+  lifecycle: lifecycle/graphite-lifecycle.yml
+  cli: cli/graphite-cli.yml
+  mcp: mcp/graphite-mcp.yml
+  skills: skills/_index.yml
+x-evidence:
+  fetched: '2026-08-04'
+  urls:
+  - {url: 'https://graphite-58cc94ce.mintlify.dev/docs/command-reference.md', http_status: 200}
+  - {url: 'https://raw.githubusercontent.com/withgraphite/agent-skills/HEAD/skills/graphite/SKILL.md', http_status: 200}

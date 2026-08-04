@@ -1,0 +1,44 @@
+generated: '2026-08-04'
+method: probed
+source: live probes of every Graphite host
+result: none
+note: >-
+  Graphite serves NO /.well-known/ discovery documents on any host. Every path
+  below was probed on 2026-08-04 and returned 404, except where noted. This file
+  is an honest negative record of the probe — no WellKnown or SecurityTxt pointer
+  is wired in apis.yml, because there is nothing there to point at.
+hosts:
+- host: https://graphite.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /security.txt, status: 404}
+- host: https://api.graphite.dev
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://app.graphite.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    accepted: false
+    content_type: text/html
+    rejection_reason: >-
+      Single-page-app catch-all. The body is an HTML document
+      (<!DOCTYPE html><html lang="en" data-graphite="true">...), not a JSON
+      AgentCard. Rejected per the A2A probe rule — this is the dominant false
+      positive on the well-known probe. No a2a/ artifact was written.
+llms_txt:
+  path: /docs/llms.txt
+  host: https://graphite.com
+  status: 200
+  file: ../llms/graphite-llms.txt
+  note: >-
+    Not a /.well-known/ document, but the only machine-readable discovery file
+    Graphite does publish. Captured verbatim in llms/.

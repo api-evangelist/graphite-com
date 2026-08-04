@@ -1,0 +1,84 @@
+generated: '2026-08-04'
+method: searched
+source: >-
+  npm registry, github.com/withgraphite/homebrew-tap, Visual Studio Marketplace,
+  https://graphite.com/docs/install-the-cli
+notes: >-
+  Graphite ships no client SDKs — it publishes no public HTTP API for one to wrap.
+  What it distributes is the `gt` command-line tool and a set of editor / CI
+  integrations. Recorded here as Packages; deliberately NOT wired as `SDKs`,
+  because there is no client library for an API.
+packages:
+- language: javascript
+  registry: npm
+  name: '@withgraphite/graphite-cli'
+  url: https://www.npmjs.com/package/@withgraphite/graphite-cli
+  install: npm install -g @withgraphite/graphite-cli@stable
+  version: 1.8.6
+  dist_tags:
+  - latest
+  - stable
+  - beta
+  kind: cli
+  official: true
+  homepage: https://graphite.com/docs/cli-overview
+- language: shell
+  registry: homebrew
+  name: withgraphite/tap/graphite
+  url: https://github.com/withgraphite/homebrew-tap
+  install: brew install withgraphite/tap/graphite
+  kind: cli
+  official: true
+  note: >-
+    Recommended install path; ships standalone binaries for macOS and Linux.
+    Formulae published: graphite, graphite-beta, graphite-alpha.
+  channels:
+  - graphite
+  - graphite-beta
+  - graphite-alpha
+- language: typescript
+  registry: visual-studio-marketplace
+  name: Graphite.gti-vscode
+  url: https://marketplace.visualstudio.com/items?itemName=Graphite.gti-vscode
+  kind: editor-extension
+  official: true
+  docs: https://graphite.com/docs/vs-code-extension
+- language: typescript
+  registry: github
+  name: withgraphite/graphite-ci-action
+  url: https://github.com/withgraphite/graphite-ci-action
+  kind: github-action
+  official: true
+  note: CI optimization action used with the Graphite merge queue.
+- language: shell
+  registry: github
+  name: withgraphite/graphite-ci-buildkite-plugin
+  url: https://github.com/withgraphite/graphite-ci-buildkite-plugin
+  kind: buildkite-plugin
+  official: true
+- language: typescript
+  registry: github
+  name: withgraphite/graphite-transitive-dependencies
+  url: https://github.com/withgraphite/graphite-transitive-dependencies
+  kind: library
+  official: true
+  note: >-
+    Computes affected packages in a monorepo CI run; used by Graphite's merge
+    queue to decide which packages need validation when PRs are queued.
+- language: typescript
+  registry: chrome-web-store
+  name: graphite-chrome-extension
+  url: https://github.com/withgraphite/graphite-chrome-extension
+  kind: browser-extension
+  official: true
+other_distributions:
+- name: Graphite menu bar app (macOS)
+  url: https://graphite.com/docs/menu-bar-app
+  kind: desktop-app
+- name: Graphite GitHub App
+  url: https://graphite.com/docs/authenticate-with-github-app
+  kind: github-app
+- name: Graphite Slack app
+  url: https://graphite.com/docs/slack-notifications
+  kind: slack-app
+sdks: []

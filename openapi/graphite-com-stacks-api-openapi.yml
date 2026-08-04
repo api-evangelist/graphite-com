@@ -1,0 +1,146 @@
+openapi: 3.0.1
+info:
+  title: Graphite Platform Authentication Stacks API
+  description: 'Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub''s APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.'
+  termsOfService: https://graphite.dev/terms
+  contact:
+    name: Graphite Support
+    url: https://graphite.com/docs/feature-requests-bugs
+  version: '1.0'
+servers:
+- url: https://app.graphite.dev
+  description: Graphite hosted platform (driven by the gt CLI and web app)
+- url: https://github.com
+  description: GitHub App install and marketplace entry points (GitHub-mediated)
+security:
+- graphiteAuthToken: []
+tags:
+- name: Stacks
+  description: Create, submit, sync, and merge stacked pull requests via the gt CLI.
+paths:
+  /stacks/branches:
+    post:
+      operationId: createBranch
+      tags:
+      - Stacks
+      summary: Create a stacked branch
+      description: 'Logical representation of `gt create`: create a new branch stacked on the current branch with committed changes.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBranchRequest'
+      responses:
+        '201':
+          description: Stacked branch created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branch'
+  /stacks/submit:
+    post:
+      operationId: submitStack
+      tags:
+      - Stacks
+      summary: Submit a stack to GitHub
+      description: 'Logical representation of `gt submit`: push stacked branches to GitHub and create or update their pull requests.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitRequest'
+      responses:
+        '200':
+          description: Pull requests created or updated.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PullRequest'
+  /stacks/sync:
+    post:
+      operationId: syncStack
+      tags:
+      - Stacks
+      summary: Sync branches with remote
+      description: 'Logical representation of `gt sync`: pull from remote, delete merged PRs, and restack local branches.'
+      responses:
+        '200':
+          description: Local stack synced with remote.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncResult'
+components:
+  schemas:
+    Branch:
+      type: object
+      properties:
+        name:
+          type: string
+        parent:
+          type: string
+          description: Parent branch in the stack.
+        trunk:
+          type: boolean
+    SyncResult:
+      type: object
+      properties:
+        restacked:
+          type: array
+          items:
+            type: string
+        deleted:
+          type: array
+          items:
+            type: string
+    CreateBranchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+          description: Commit message for the new branch.
+        all:
+          type: boolean
+          description: Stage all changes before committing.
+      required:
+      - name
+    SubmitRequest:
+      type: object
+      properties:
+        stack:
+          type: boolean
+          description: Submit the entire stack rather than only the current branch.
+        draft:
+          type: boolean
+        publish:
+          type: boolean
+    PullRequest:
+      type: object
+      properties:
+        number:
+          type: integer
+        title:
+          type: string
+        branch:
+          type: string
+        url:
+          type: string
+          format: uri
+        state:
+          type: string
+          enum:
+          - draft
+          - open
+          - merged
+          - closed
+  securitySchemes:
+    graphiteAuthToken:
+      type: http
+      scheme: bearer
+      description: Graphite auth token registered via `gt auth`, used by the CLI to act on the user's behalf.

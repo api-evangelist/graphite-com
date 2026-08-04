@@ -1,0 +1,82 @@
+generated: '2026-08-04'
+method: searched
+source: https://graphite.com/docs/cli-changelog
+scheme: semver
+subject: Graphite CLI (gt)
+current_version: 1.8.6
+current_released: '2026-05-04'
+window: recent (most recent 8 releases of a dated changelog going back to 2022)
+mirrors:
+- https://www.npmjs.com/package/@withgraphite/graphite-cli?activeTab=versions
+- gt changelog
+note: >-
+  Graphite publishes a dated changelog for the CLI only. There is no separate
+  public changelog for the web app, merge queue, or AI review features, and
+  https://graphite.com/changelog returns 404 (probed 2026-08-04).
+entries:
+- version: 1.8.6
+  date: '2026-05-04'
+  tags: [bug-fix, improvement]
+  breaking: false
+  highlights:
+  - Upgrade prompt moved to the end of command output for visibility.
+  - '`gt create --onto` now accepts the parent branch.'
+  - Fixed pre-commit hook changes being discarded when the hook failed during `gt create`.
+- version: 1.8.5
+  date: '2026-04-20'
+  tags: [improvement, bug-fix]
+  breaking: false
+  highlights:
+  - Fixed a race condition in `gt submit`.
+  - Removed stale command line completions.
+- version: 1.8.4
+  date: '2026-04-13'
+  tags: [feature, bug-fix]
+  breaking: false
+  highlights:
+  - '`gt` commands now only affect the current worktree.'
+  - 'New flags: `gt create --onto`, `gt fold --stack`, `gt move --only`, `gt reorder --stack`.'
+  - '`gt squash` no longer immediately enters conflict resolution; upstack branches are left needs-restack.'
+  - New user config to auto-delete merged or closed branches during `gt sync` and `gt get`.
+  - Auth configuration moved to its own file, out of the user config file.
+- version: 1.8.3
+  date: '2026-03-23'
+  tags: [feature, bug-fix, performance]
+  breaking: false
+  highlights:
+  - 'Added `GRAPHITE_AUTH_TOKEN` environment variable to override tokens from config files and profiles.'
+  - Shell completions for `info`, `get`, `freeze`, `unfreeze`, `unlink`.
+  - Eliminated redundant `git status` calls across many commands.
+- version: 1.8.2
+  date: '2026-03-18'
+  tags: [feature, bug-fix]
+  breaking: false
+  highlights:
+  - 'Added `gt get --no-checkout` to fetch and track branches without switching.'
+  - '`gt submit` now opens the PR view by default instead of the submit view.'
+  - '`gt modify --into` disallowed against a branch checked out in another worktree.'
+- version: 1.8.1
+  date: '2026-03-06'
+  tags: [bug-fix]
+  breaking: false
+  highlights:
+  - Fixed an auto-updater bug that reverted beta users onto the stable release.
+- version: 1.8.0
+  date: '2026-03-02'
+  tags: [feature, bug-fix, performance]
+  breaking: false
+  highlights:
+  - >-
+    Major change to branch-metadata storage and caching — migrated the storage
+    backend from git objects and refs to SQLite, so stale metadata is only
+    recomputed when relevant to the executed command.
+  - '`gt split --by-commit` now defaults to commit messages as new branch names.'
+- version: 1.7.20
+  date: '2026-02-19'
+  tags: [feature, bug-fix]
+  breaking: false
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://graphite-58cc94ce.mintlify.dev/docs/cli-changelog.md
+  http_status: 200
+  bytes: 113952

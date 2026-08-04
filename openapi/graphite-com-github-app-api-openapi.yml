@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Graphite Platform Authentication GitHub App API
+  description: 'Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub''s APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.'
+  termsOfService: https://graphite.dev/terms
+  contact:
+    name: Graphite Support
+    url: https://graphite.com/docs/feature-requests-bugs
+  version: '1.0'
+servers:
+- url: https://app.graphite.dev
+  description: Graphite hosted platform (driven by the gt CLI and web app)
+- url: https://github.com
+  description: GitHub App install and marketplace entry points (GitHub-mediated)
+security:
+- graphiteAuthToken: []
+tags:
+- name: GitHub App
+  description: GitHub App install and webhook integration entry points.
+paths:
+  /apps/graphite-app:
+    get:
+      operationId: installGitHubApp
+      tags:
+      - GitHub App
+      summary: Install the Graphite GitHub App
+      description: Entry point to install the Graphite GitHub App on an organization. The installed app receives GitHub webhooks for CI status, mergeability, and push events and calls GitHub's APIs with fine-grained permissions and short-lived tokens. Served by GitHub, not by Graphite.
+      responses:
+        '200':
+          description: GitHub App installation page.
+  /marketplace/graphite-dev:
+    get:
+      operationId: getMarketplaceListing
+      tags:
+      - GitHub App
+      summary: Graphite GitHub Marketplace listing
+      description: The Graphite listing on the GitHub Marketplace, from which an organization owner can install the app. Served by GitHub.
+      responses:
+        '200':
+          description: GitHub Marketplace listing page.
+components:
+  securitySchemes:
+    graphiteAuthToken:
+      type: http
+      scheme: bearer
+      description: Graphite auth token registered via `gt auth`, used by the CLI to act on the user's behalf.

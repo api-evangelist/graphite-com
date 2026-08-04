@@ -1,0 +1,62 @@
+openapi: 3.0.1
+info:
+  title: Graphite Platform Authentication Merge Queue API
+  description: 'Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub''s APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.'
+  termsOfService: https://graphite.dev/terms
+  contact:
+    name: Graphite Support
+    url: https://graphite.com/docs/feature-requests-bugs
+  version: '1.0'
+servers:
+- url: https://app.graphite.dev
+  description: Graphite hosted platform (driven by the gt CLI and web app)
+- url: https://github.com
+  description: GitHub App install and marketplace entry points (GitHub-mediated)
+security:
+- graphiteAuthToken: []
+tags:
+- name: Merge Queue
+  description: Graphite merge queue actions.
+paths:
+  /stacks/merge:
+    post:
+      operationId: mergeStack
+      tags:
+      - Merge Queue
+      summary: Merge a stack of pull requests
+      description: 'Logical representation of `gt merge`: merge pull requests from trunk through the current branch via Graphite, optionally through the merge queue.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeRequest'
+      responses:
+        '200':
+          description: Stack merged or enqueued in the merge queue.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeResult'
+components:
+  schemas:
+    MergeResult:
+      type: object
+      properties:
+        merged:
+          type: array
+          items:
+            type: string
+        enqueued:
+          type: boolean
+    MergeRequest:
+      type: object
+      properties:
+        useMergeQueue:
+          type: boolean
+          description: Route the merge through the Graphite merge queue.
+  securitySchemes:
+    graphiteAuthToken:
+      type: http
+      scheme: bearer
+      description: Graphite auth token registered via `gt auth`, used by the CLI to act on the user's behalf.

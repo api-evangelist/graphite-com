@@ -1,0 +1,168 @@
+generated: '2026-08-04'
+method: searched
+source: https://graphite.com/docs/command-reference
+docs:
+  overview: https://graphite.com/docs/cli-overview
+  quick_start: https://graphite.com/docs/cli-quick-start
+  command_reference: https://graphite.com/docs/command-reference
+  cheatsheet: https://graphite.com/docs/cheatsheet
+  install: https://graphite.com/docs/install-the-cli
+  configure: https://graphite.com/docs/configure-cli
+  changelog: https://graphite.com/docs/cli-changelog
+  troubleshooting: https://graphite.com/docs/troubleshooting
+  mcp: https://graphite.com/docs/gt-mcp
+cli:
+  name: Graphite CLI
+  binary: gt
+  version: 1.8.6
+  released: '2026-05-04'
+  description: >-
+    The Graphite CLI creates, stacks, and submits pull requests from the command
+    line. It is fully compatible with git — installed on an existing repository,
+    the `gt` commands sit alongside `git`, with several commands (`add`,
+    `cherry-pick`, `rebase`, `reset`, `restore`) offered as straight git
+    passthroughs.
+install:
+- method: homebrew
+  command: brew install withgraphite/tap/graphite
+  platforms: [macos, linux]
+  recommended: true
+  note: Ships standalone binaries; works on Linux via Homebrew on Linux.
+- method: npm
+  command: npm install -g @withgraphite/graphite-cli@stable
+  platforms: [macos, linux, windows]
+  note: Developed on Node.js v22; the recommended path on Windows (or via WSL).
+- method: source
+  docs: https://graphite.com/docs/installing-from-source
+authentication:
+  flow: >-
+    Sign in at https://app.graphite.com/activate with a GitHub account, copy the
+    pre-filled `gt auth --token <token>` command, and run it locally.
+  command: gt auth --token <YOUR_AUTH_TOKEN>
+  env_var: GRAPHITE_AUTH_TOKEN
+  env_var_since: 1.8.3
+  env_var_note: Overrides auth tokens from config files and profiles.
+  storage: >-
+    Since CLI 1.8.4 auth configuration lives in its own file rather than inside
+    the user config file.
+  alternative: GitHub personal access token (see reference/pat-permissions)
+  see: authentication/graphite-authentication.yml
+configuration:
+  aliases_file: ~/.graphite_aliases
+  aliases_command: gt aliases
+  aliases_note: >-
+    Graphite ships a custom aliasing system; a "legacy alias preset" reproduces
+    the pre-v1 noun-verb command names.
+  legacy_preset_docs: https://graphite.com/docs/legacy-alias-preset
+  completion:
+  - gt completion   # bash / zsh
+  - gt fish         # fish
+command_groups:
+- group: stack authoring
+  commands:
+  - {command: gt create, args: '[name]', summary: 'Create a new branch stacked on top of the current branch and commit staged changes.'}
+  - {command: gt modify, summary: 'Modify the current branch by amending its commit or creating a new commit; automatically restacks descendants.'}
+  - {command: gt absorb, summary: 'Amend staged changes to the relevant commits in the current stack, chosen by inspecting downstack changes.'}
+  - {command: gt squash, summary: 'Squash all commits in the current branch into a single commit and restack upstack branches.'}
+  - {command: gt fold, summary: "Fold a branch's changes into its parent, update descendants' dependencies, and restack."}
+  - {command: gt split, summary: 'Split the current branch into multiple branches.'}
+  - {command: gt pop, summary: 'Delete the current branch but retain the state of files in the working tree.'}
+  - {command: gt revert, args: '[sha]', summary: 'Create a branch that reverts a commit on trunk. Experimental.'}
+- group: stack navigation
+  commands:
+  - {command: gt up, args: '[steps]', summary: 'Switch to the child of the current branch.'}
+  - {command: gt down, args: '[steps]', summary: 'Switch to the parent of the current branch.'}
+  - {command: gt top, summary: 'Switch to the tip branch of the current stack.'}
+  - {command: gt bottom, summary: 'Switch to the branch closest to trunk in the current stack.'}
+  - {command: gt checkout, args: '[branch]', summary: 'Switch to a branch, or open an interactive selector.'}
+  - {command: gt parent, summary: 'Show the parent of the current branch.'}
+  - {command: gt children, summary: 'Show the children of the current branch.'}
+  - {command: gt trunk, summary: 'Show the trunk of the current branch.'}
+  - {command: gt info, args: '[branch]', summary: 'Display information about the current branch.'}
+  - {command: gt log, args: '[command]', summary: 'Commands that log your stacks.'}
+- group: stack structure
+  commands:
+  - {command: gt track, args: '[branch]', summary: 'Start tracking a branch with Graphite by selecting its parent.'}
+  - {command: gt untrack, args: '[branch]', summary: 'Stop tracking a branch (children are untracked too).'}
+  - {command: gt move, summary: 'Rebase the current branch onto a target branch and restack its descendants. --only moves just the selected branch.'}
+  - {command: gt reorder, summary: 'Reorder branches between trunk and the current branch, restacking descendants, via an editor.'}
+  - {command: gt restack, summary: 'Ensure each branch in the stack has its parent in its git commit history, rebasing where necessary.'}
+  - {command: gt rename, args: '[name]', summary: 'Rename a branch and update metadata referencing it.'}
+  - {command: gt delete, args: '[name]', summary: 'Delete a branch and its Graphite metadata locally; children are restacked onto the parent.'}
+  - {command: gt freeze, args: '[branch]', summary: 'Freeze a branch and everything downstack, preventing local modification including restacks.'}
+  - {command: gt unfreeze, args: '[branch]', summary: 'Unfreeze a branch and everything upstack of it.'}
+- group: remote / pull requests
+  commands:
+  - {command: gt submit, summary: 'Idempotently force push all branches in the current stack from trunk to the current branch, creating or updating a distinct PR for each.'}
+  - {command: gt sync, summary: 'Sync all branches with remote, prompt to delete branches whose PRs merged or closed, and restack.'}
+  - {command: gt get, args: '[branch]', summary: 'For a branch or PR number, sync branches from trunk to it from remote, resolving conflicts.'}
+  - {command: gt merge, summary: 'Merge the PRs for all branches from trunk to the current branch via Graphite.'}
+  - {command: gt pr, args: '[branch]', summary: 'Open the pull request page for a branch or PR number.'}
+  - {command: gt unlink, args: '[branch]', summary: 'Unlink the PR currently associated with the branch.'}
+  - {command: gt dash, summary: 'Open the Graphite dashboard.'}
+- group: conflict handling
+  commands:
+  - {command: gt continue, summary: 'Continue the most recent Graphite command halted by a rebase conflict.'}
+  - {command: gt abort, summary: 'Abort the current Graphite command halted by a rebase conflict.'}
+  - {command: gt undo, summary: 'Undo the most recent Graphite mutations run from the current worktree.'}
+- group: setup / meta
+  commands:
+  - {command: gt init, summary: 'Initialize Graphite in a repository by selecting a trunk branch (also used to change trunk).'}
+  - {command: gt auth, summary: 'Add your auth token so the CLI can create and update PRs on GitHub.'}
+  - {command: gt config, summary: 'Configure the Graphite CLI.'}
+  - {command: gt aliases, summary: 'Edit your command aliases.'}
+  - {command: gt completion, summary: 'Set up bash or zsh tab completion.'}
+  - {command: gt fish, summary: 'Set up fish tab completion.'}
+  - {command: gt upgrade, summary: 'Update the CLI to the latest stable version.'}
+  - {command: gt changelog, summary: 'Show the Graphite CLI changelog.'}
+  - {command: gt docs, summary: 'Show the Graphite CLI docs.'}
+  - {command: gt guide, args: '[title]', summary: 'Read extended guides on how to use gt.'}
+  - {command: gt demo, args: '[demoName]', summary: 'Run interactive demos in any repo to learn the CLI.'}
+  - {command: gt feedback, args: '[message]', summary: "Post a message directly to the maintainers' Slack."}
+- group: git passthroughs
+  commands:
+  - {command: gt add, args: '[args..]', summary: 'git add passthrough'}
+  - {command: gt cherry-pick, args: '[args..]', summary: 'git cherry-pick passthrough'}
+  - {command: gt rebase, args: '[args..]', summary: 'git rebase passthrough'}
+  - {command: gt reset, args: '[args..]', summary: 'git reset passthrough'}
+  - {command: gt restore, args: '[args..]', summary: 'git restore passthrough'}
+key_flows:
+- name: Create and submit a stack
+  steps:
+  - gt init
+  - gt create <branch> -m "<message>"
+  - gt modify -m "<message>"
+  - gt create <next-branch> -m "<message>"
+  - gt submit --no-interactive
+- name: Rebase a stack onto updated trunk
+  steps:
+  - gt sync
+  - gt restack
+  - gt submit
+- name: Restructure a stack
+  steps:
+  - gt reorder
+  - gt move --onto <branch>
+  - gt fold --stack
+  - gt split --by-commit
+default_aliases:
+  gt c: gt create
+  gt m: gt modify
+  gt s: gt submit
+  gt ss: gt submit --stack
+  gt co: gt checkout
+  gt l: gt log
+  gt ls: gt log short
+  gt ll: gt log long
+  gt u: gt up
+  gt d: gt down
+  gt t: gt top
+  gt b: gt bottom
+  gt rn: gt rename
+  gt dl: gt delete
+  gt sp: gt split
+command_count: 53
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://graphite-58cc94ce.mintlify.dev/docs/command-reference.md
+  http_status: 200

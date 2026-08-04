@@ -1,0 +1,265 @@
+aid: graphite-com
+url: https://raw.githubusercontent.com/api-evangelist/graphite-com/refs/heads/main/apis.yml
+name: Graphite
+kind: company
+description: Graphite is a code review platform built on top of GitHub for stacking pull requests, AI
+  code review, and merging at scale. The gt CLI creates and submits stacked PRs, Graphite Agent (Diamond)
+  provides codebase-aware AI review and chat, and a merge queue batches and tests PRs in parallel. Graphite
+  has no standalone public REST API - it integrates through a GitHub App that consumes GitHub webhooks,
+  the gt CLI (authenticated with a Graphite token), the GT MCP server, and label / GitHub-mediated integrations
+  (Slack, Linear, external merge queue).
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: true
+  try_now: true
+  public: true
+  label: Freemium (free trial) · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/graphite-com.png
+tags:
+- Code Review
+- Stacked PRs
+- Merge Queue
+- AI Code Review
+- Developer Tools
+- GitHub
+created: '2026-06-20'
+modified: '2026-08-04'
+specificationVersion: '0.19'
+apis:
+- aid: graphite-com:graphite-com-authentication-api
+  name: Graphite Authentication API
+  description: Graphite CLI authentication with a Graphite auth token.
+  humanURL: https://graphite.com/docs/authenticate-with-github-app
+  baseURL: https://github.com/apps/graphite-app
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/graphite-com-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://graphite.com/docs/authenticate-with-github-app
+  - type: APIReference
+    url: https://github.com/marketplace/graphite-dev
+  - type: Documentation
+    url: https://graphite.com/docs/cli-overview
+  - type: APIReference
+    url: https://graphite.com/docs/command-reference
+  - type: Documentation
+    url: https://graphite.com/docs/gt-mcp
+  - type: Documentation
+    url: https://graphite.com/docs/ai-reviews
+  - type: Documentation
+    url: https://graphite.com/docs/ai-review-customization
+  - type: Documentation
+    url: https://graphite.com/docs/graphite-merge-queue
+  - type: Documentation
+    url: https://graphite.com/docs/external-merge-queue-integration
+  - type: Documentation
+    url: https://graphite.com/docs/insights
+  - type: Documentation
+    url: https://graphite.com/docs/insights-stats-definitions
+- aid: graphite-com:graphite-com-github-app-api
+  name: Graphite GitHub App API
+  description: GitHub App install and webhook integration entry points.
+  humanURL: https://graphite.com/docs/authenticate-with-github-app
+  baseURL: https://github.com/apps/graphite-app
+  tags:
+  - GitHub App
+  properties:
+  - type: OpenAPI
+    url: openapi/graphite-com-github-app-api-openapi.yml
+  - type: Documentation
+    url: https://graphite.com/docs/authenticate-with-github-app
+  - type: APIReference
+    url: https://github.com/marketplace/graphite-dev
+  - type: Documentation
+    url: https://graphite.com/docs/cli-overview
+  - type: APIReference
+    url: https://graphite.com/docs/command-reference
+  - type: Documentation
+    url: https://graphite.com/docs/gt-mcp
+  - type: Documentation
+    url: https://graphite.com/docs/ai-reviews
+  - type: Documentation
+    url: https://graphite.com/docs/ai-review-customization
+  - type: Documentation
+    url: https://graphite.com/docs/graphite-merge-queue
+  - type: Documentation
+    url: https://graphite.com/docs/external-merge-queue-integration
+  - type: Documentation
+    url: https://graphite.com/docs/insights
+  - type: Documentation
+    url: https://graphite.com/docs/insights-stats-definitions
+- aid: graphite-com:graphite-com-merge-queue-api
+  name: Graphite Merge Queue API
+  description: Graphite merge queue actions.
+  humanURL: https://graphite.com/docs/authenticate-with-github-app
+  baseURL: https://github.com/apps/graphite-app
+  tags:
+  - Merge Queue
+  properties:
+  - type: OpenAPI
+    url: openapi/graphite-com-merge-queue-api-openapi.yml
+  - type: Documentation
+    url: https://graphite.com/docs/authenticate-with-github-app
+  - type: APIReference
+    url: https://github.com/marketplace/graphite-dev
+  - type: Documentation
+    url: https://graphite.com/docs/cli-overview
+  - type: APIReference
+    url: https://graphite.com/docs/command-reference
+  - type: Documentation
+    url: https://graphite.com/docs/gt-mcp
+  - type: Documentation
+    url: https://graphite.com/docs/ai-reviews
+  - type: Documentation
+    url: https://graphite.com/docs/ai-review-customization
+  - type: Documentation
+    url: https://graphite.com/docs/graphite-merge-queue
+  - type: Documentation
+    url: https://graphite.com/docs/external-merge-queue-integration
+  - type: Documentation
+    url: https://graphite.com/docs/insights
+  - type: Documentation
+    url: https://graphite.com/docs/insights-stats-definitions
+- aid: graphite-com:graphite-com-stacks-api
+  name: Graphite Stacks API
+  description: Create, submit, sync, and merge stacked pull requests via the gt CLI.
+  humanURL: https://graphite.com/docs/authenticate-with-github-app
+  baseURL: https://github.com/apps/graphite-app
+  tags:
+  - Stacks
+  properties:
+  - type: OpenAPI
+    url: openapi/graphite-com-stacks-api-openapi.yml
+  - type: Documentation
+    url: https://graphite.com/docs/authenticate-with-github-app
+  - type: APIReference
+    url: https://github.com/marketplace/graphite-dev
+  - type: Documentation
+    url: https://graphite.com/docs/cli-overview
+  - type: APIReference
+    url: https://graphite.com/docs/command-reference
+  - type: Documentation
+    url: https://graphite.com/docs/gt-mcp
+  - type: Documentation
+    url: https://graphite.com/docs/ai-reviews
+  - type: Documentation
+    url: https://graphite.com/docs/ai-review-customization
+  - type: Documentation
+    url: https://graphite.com/docs/graphite-merge-queue
+  - type: Documentation
+    url: https://graphite.com/docs/external-merge-queue-integration
+  - type: Documentation
+    url: https://graphite.com/docs/insights
+  - type: Documentation
+    url: https://graphite.com/docs/insights-stats-definitions
+common:
+- type: AgenticAccess
+  url: agentic-access/graphite-com-agentic-access.yml
+- type: DomainSecurity
+  url: security/graphite-com-domain-security.yml
+- type: Authentication
+  url: authentication/graphite-com-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/withgraphite
+- type: LinkedIn
+  url: https://www.linkedin.com/company/graphite-dev
+- type: Website
+  url: https://graphite.dev
+- type: Documentation
+  url: https://graphite.com/docs
+- type: Plans
+  url: plans/graphite-com-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/graphite-com-rate-limits.yml
+- type: FinOps
+  url: finops/graphite-com-finops.yml
+- type: DeveloperPortal
+  url: https://graphite.com/docs
+- type: GettingStarted
+  url: https://graphite.com/docs/get-started
+- type: Guides
+  url: https://graphite.com/guides
+- type: CLI
+  name: Graphite CLI (gt) command surface
+  url: cli/graphite-com-cli.yml
+- type: CLIDocumentation
+  url: https://graphite.com/docs/command-reference
+- type: MCPServer
+  name: GT MCP server
+  url: mcp/graphite-com-mcp.yml
+- type: AgentSkill
+  name: Graphite agent skills
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/graphite-com-llms.txt
+- type: Packages
+  url: packages/graphite-com-packages.yml
+- type: Conventions
+  url: conventions/graphite-com-conventions.yml
+- type: Idempotency
+  name: Idempotent gt submit / sync / restack semantics
+  url: conventions/graphite-com-conventions.yml
+- type: Lifecycle
+  url: lifecycle/graphite-com-lifecycle.yml
+- type: StatusPage
+  url: https://status.graphite.com
+- type: ChangeLog
+  name: Graphite CLI changelog
+  url: changelog/graphite-com-changelog.yml
+- type: Conformance
+  url: conformance/graphite-com-conformance.yml
+- type: TrustCenter
+  url: security/graphite-com-trust-center.yml
+- type: Security
+  url: https://graphite.com/docs/privacy-and-security
+- type: VulnerabilityDisclosure
+  url: security/graphite-com-vulnerability-disclosure.yml
+- type: Blog
+  url: https://graphite.com/blog
+- type: Pricing
+  url: https://graphite.com/pricing
+- type: SignUp
+  url: https://app.graphite.com/signup
+- type: Login
+  url: https://app.graphite.com
+- type: TermsOfService
+  url: https://graphite.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://graphite.com/privacy
+- type: Support
+  url: mailto:support@graphite.com
+- type: Community
+  url: https://community.graphite.com
+- type: SourceCode
+  name: Graphite agent skills repository
+  url: https://github.com/withgraphite/agent-skills
+- type: Customers
+  url: https://graphite.com/customers
+- type: Features
+  url: https://graphite.com/features
+- type: Careers
+  url: https://graphite.com/careers
+- type: Twitter
+  url: https://x.com/graphite
+- type: YouTube
+  url: https://www.youtube.com/@withgraphite
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-merged-from:
+- graphite-dev
+- graphite
+x-merge-note: 'Consolidated 2026-08-04 from all/graphite-dev (4 APIs + OpenAPIs, plans, rate-limits, finops,
+  screenshots, Kin Score history) and the all/graphite harvest stub (CLI, MCP server, agent skills, llms.txt,
+  packages, conventions, lifecycle, changelog, conformance, trust center, VDP, well-known). Same company:
+  Screenplay Studios, Inc. / withgraphite. Slug follows slug=domain on the current graphite.com presence.
+  The stub''s Compliance pointer to trust.cursor.com was dropped as a mis-attribution.'

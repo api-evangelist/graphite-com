@@ -1,0 +1,110 @@
+generated: '2026-08-04'
+method: searched
+source: >-
+  https://graphite.com/docs/privacy-and-security,
+  https://graphite.com/docs/gt-mcp,
+  https://github.com/withgraphite/agent-skills
+note: >-
+  Graphite publishes no public HTTP API, so the usual API-standard checks
+  (OAuth 2.0 securitySchemes, RFC 9457 problem details, JSON:API, OData,
+  pagination conventions) have no artifact to be asserted against. Conformance
+  here is assessed against the standards Graphite's actual surfaces implement —
+  Model Context Protocol, the Agent Skill format, llms.txt, Git/GitHub, and the
+  compliance program it publishes.
+standards:
+- id: soc2-type-ii
+  conforms: true
+  evidence: >-
+    "We are SOC 2 Type II compliant, passing a rigorous auditing procedure
+    established by the American Institute of Certified Public Accountants
+    (AICPA)." — https://graphite.com/docs/privacy-and-security
+  report: https://trust.cursor.com
+- id: model-context-protocol
+  conforms: true
+  evidence: >-
+    GT MCP ships inside the Graphite CLI (>= 1.6.7) as a stdio MCP server invoked
+    as `gt mcp`; documented client configs for Cursor and Claude Code.
+    https://graphite.com/docs/gt-mcp
+  maturity: beta
+- id: agent-skill
+  conforms: true
+  evidence: >-
+    First-party skill published at withgraphite/agent-skills with standard
+    frontmatter (name, description, allowed-tools) and listed on agentskills.io.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    https://graphite.com/docs/llms.txt returns 200 text/plain in llms.txt format
+    (H1, link lists with per-page descriptions).
+  caveat: >-
+    Its "## OpenAPI Specs" section links a Mintlify template leftover (the sample
+    "OpenAPI Plant Store" spec), which 404s at the advertised URL. See the
+    contract-discovery note below.
+- id: oauth2
+  conforms: partial
+  evidence: >-
+    Graphite authenticates users through a GitHub App / GitHub OAuth
+    installation, but exposes no OAuth authorization server of its own —
+    /.well-known/oauth-authorization-server returns 404.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every Graphite host.
+- id: rfc8615-well-known
+  conforms: false
+  evidence: No /.well-known/ documents served on any Graphite host.
+- id: a2a
+  conforms: false
+  evidence: >-
+    No A2A agent card. /.well-known/agent-card.json and /.well-known/agent.json
+    return 404 on graphite.com and api.graphite.dev; the 200 on app.graphite.com
+    is an HTML SPA catch-all and was rejected.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document is published for any Graphite surface. See the
+    contract_discovery block for the full set of probes.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    Graphite consumes GitHub webhook events but publishes no outbound webhook or
+    event surface of its own, so there is nothing for an AsyncAPI to describe.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset/Deprecation header support and no published deprecation policy.
+contract_discovery:
+  performed: '2026-08-04'
+  conclusion: no public machine-readable API contract
+  probes:
+  - {url: 'https://api.graphite.dev/openapi.json', status: 404}
+  - {url: 'https://api.graphite.dev/openapi.yaml', status: 404}
+  - {url: 'https://api.graphite.dev/swagger.json', status: 404}
+  - {url: 'https://api.graphite.dev/api-docs', status: 404}
+  - {url: 'https://api.graphite.dev/docs', status: 404}
+  - {url: 'https://api.graphite.dev/graphql', status: 404}
+  - {url: 'https://api.graphite.com/openapi.json', status: 404}
+  - {url: 'https://graphite.com/docs/api', status: 404}
+  - {url: 'https://graphite.com/docs/api-reference/openapi.json', status: 404}
+  false_leads:
+  - lead: >-
+      graphite.com/docs/llms.txt advertises an "## OpenAPI Specs" entry pointing at
+      /docs/api-reference/openapi.json.
+    finding: >-
+      The advertised URL 404s on both graphite.com and the Mintlify origin. The
+      only file behind it, in withgraphite/mintlify-docs, is Mintlify's starter
+      template — "OpenAPI Plant Store" 3.1.0 with /plants paths and a
+      sandbox.mintlify.com server. NOT Graphite's API and deliberately NOT saved
+      to openapi/.
+  - lead: >-
+      withgraphite/graphite-cli-routes publishes a typed route tree for
+      api.graphite.dev (8 routes: log-command, upgrade, feedback, traces,
+      submit/pull-requests, pull-requests, cli-survey).
+    finding: >-
+      Legacy (v0.14.1, @screenplaydev era). A live probe of
+      GET https://api.graphite.dev/graphite/upgrade returns 404, so these routes
+      are dead. No OpenAPI was generated from them — a spec for endpoints that do
+      not answer would be fabrication.
+  actual_surfaces:
+  - {surface: cli, artifact: 'cli/graphite-cli.yml', public: true}
+  - {surface: mcp, artifact: 'mcp/graphite-mcp.yml', public: true, transport: stdio}
+  - {surface: agent-skill, artifact: 'skills/_index.yml', public: true}
+  - {surface: http-api, artifact: null, public: false}

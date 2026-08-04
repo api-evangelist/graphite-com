@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/graphite-com-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: graphiteAuthToken
+  type: http
+  scheme: bearer
+  description: Graphite auth token registered via `gt auth`, used by the CLI to act on the user's
+    behalf.
+  sources:
+  - openapi/graphite-com-openapi.yml

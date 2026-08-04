@@ -1,0 +1,47 @@
+generated: '2026-08-04'
+method: searched
+probe: true
+probe_result: >-
+  probe-security-programs.py returned trust=none — trust.graphite.com does not
+  resolve, and /trust, /security and /compliance on graphite.com all return 404.
+  The trust center was found instead in Graphite's own documentation, which
+  points at the parent company's trust center.
+url: https://trust.cursor.com
+operated_by: Anysphere (Cursor) — Graphite's parent company since December 2025
+own_domain_trust_center: false
+certifications:
+- SOC 2 Type II
+compliance_claims:
+- claim: SOC 2 Type II
+  detail: >-
+    Audited against the AICPA trust services criteria across security,
+    availability, processing integrity, confidentiality and privacy, evaluating
+    the operating effectiveness of controls over a period (typically six months
+    or more) rather than at a point in time.
+  report_request: via https://trust.cursor.com
+  source: https://graphite.com/docs/privacy-and-security
+- claim: Continuous penetration testing
+  detail: '"We also continuously pen test."'
+  source: https://graphite.com/docs/privacy-and-security
+enterprise:
+  github_enterprise_server: https://graphite.com/docs/github-enterprise-server
+  vendor_due_diligence: >-
+    Graphite positions the SOC 2 Type II report as the artifact that streamlines
+    enterprise vendor due diligence.
+evidence:
+- source: https://graphite.com/docs/privacy-and-security
+  keywords: [soc 2 type ii, aicpa, pen test, trust center, encryption, aes-256-cbc]
+- source: https://trust.cursor.com
+  http_status: 200
+  note: >-
+    JavaScript application; an anonymous fetch returns only the title "Cursor
+    Trust Center". The named certifications above are taken from Graphite's own
+    documentation, not scraped from this page.
+x-evidence:
+  fetched: '2026-08-04'
+  urls:
+  - {url: 'https://graphite-58cc94ce.mintlify.dev/docs/privacy-and-security.md', http_status: 200}
+  - {url: 'https://trust.cursor.com', http_status: 200}
+  - {url: 'https://trust.graphite.com/', http_status: null, note: DNS does not resolve}
+  - {url: 'https://graphite.com/trust', http_status: 404}
+  - {url: 'https://graphite.com/security', http_status: 404}
