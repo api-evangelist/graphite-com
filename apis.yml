@@ -162,6 +162,8 @@ apis:
   - type: Documentation
     url: https://graphite.com/docs/insights-stats-definitions
 common:
+- type: IssueTracker
+  url: https://github.com/withgraphite/agent-skills/issues
 - type: AgenticAccess
   url: agentic-access/graphite-com-agentic-access.yml
 - type: DomainSecurity
