@@ -1,0 +1,142 @@
+{
+  "item": [
+    {
+      "id": "794c49eb-43f4-4ce3-8604-a8d27837da1f",
+      "name": "Merge Queue",
+      "description": {
+        "content": "Graphite merge queue actions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2bc1131-8379-416d-8856-bcf0bbe71ab9",
+          "name": "Merge a stack of pull requests",
+          "request": {
+            "name": "Merge a stack of pull requests",
+            "description": {
+              "content": "Logical representation of `gt merge`: merge pull requests from trunk through the current branch via Graphite, optionally through the merge queue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stacks",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"useMergeQueue\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a4c6647-50a9-4714-9cc2-8af20e8043ab",
+              "name": "Stack merged or enqueued in the merge queue.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stacks",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"useMergeQueue\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merged\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enqueued\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.graphite.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "052ee756-0ca1-4167-bd1d-2d889742c363",
+    "name": "Graphite Platform Authentication Merge Queue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub's APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.\n\nContact Support:\n Name: Graphite Support",
+      "type": "text/plain"
+    }
+  }
+}

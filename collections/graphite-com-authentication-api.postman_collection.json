@@ -1,0 +1,187 @@
+{
+  "item": [
+    {
+      "id": "65311939-29e2-4fd9-92c1-817460d21544",
+      "name": "Authentication",
+      "description": {
+        "content": "Graphite CLI authentication with a Graphite auth token.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f1c39c9-a0bf-4c21-9a88-5ba8c37317fd",
+          "name": "Authenticate the gt CLI",
+          "request": {
+            "name": "Authenticate the gt CLI",
+            "description": {
+              "content": "Logical representation of `gt auth`, which registers a Graphite auth token so the CLI can create and update pull requests on the user's behalf. The token is obtained from the Graphite web app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39643c75-fbf4-45de-87b1-937bcd7da830",
+              "name": "CLI authenticated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticated\": false,\n  \"user\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a172f1c8-4c48-4497-bb8f-8e8284f17734",
+              "name": "Invalid or expired auth token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.graphite.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3bfda26d-badb-4606-8249-98e0605ee1dd",
+    "name": "Graphite Platform Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub's APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.\n\nContact Support:\n Name: Graphite Support",
+      "type": "text/plain"
+    }
+  }
+}

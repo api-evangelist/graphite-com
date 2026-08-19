@@ -1,0 +1,323 @@
+{
+  "item": [
+    {
+      "id": "cd403032-8529-4e29-bce9-b609721e416a",
+      "name": "Stacks",
+      "description": {
+        "content": "Create, submit, sync, and merge stacked pull requests via the gt CLI.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "15651676-41b3-49f9-a65a-2a63df8a3444",
+          "name": "Create a stacked branch",
+          "request": {
+            "name": "Create a stacked branch",
+            "description": {
+              "content": "Logical representation of `gt create`: create a new branch stacked on the current branch with committed changes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stacks",
+                "branches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"all\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6062bc0-7545-4f65-98f0-1770c8618d15",
+              "name": "Stacked branch created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stacks",
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"all\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"parent\": \"string\",\n  \"trunk\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bae336da-a896-4dd8-b201-ecb74627c6c4",
+          "name": "Submit a stack to GitHub",
+          "request": {
+            "name": "Submit a stack to GitHub",
+            "description": {
+              "content": "Logical representation of `gt submit`: push stacked branches to GitHub and create or update their pull requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stacks",
+                "submit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stack\": \"<boolean>\",\n  \"draft\": \"<boolean>\",\n  \"publish\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f6007d7d-25c4-4ac7-b401-ff67ab9e2cc3",
+              "name": "Pull requests created or updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stacks",
+                    "submit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stack\": \"<boolean>\",\n  \"draft\": \"<boolean>\",\n  \"publish\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"number\": 2565,\n    \"title\": \"string\",\n    \"branch\": \"string\",\n    \"url\": \"http://rhpygKgtTHIykvIOkaQkKPVuBkoCjNtl.arvcExCjumuTFPztvET-0z\",\n    \"state\": \"draft\"\n  },\n  {\n    \"number\": 9629,\n    \"title\": \"string\",\n    \"branch\": \"string\",\n    \"url\": \"http://DFXGRdCIGvN.gsuZsYy8.rK+6C0iBNc0UEUnss1jdWDhktf80qD6gy\",\n    \"state\": \"closed\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59a72376-5758-45b6-a9c0-00913c17aa73",
+          "name": "Sync branches with remote",
+          "request": {
+            "name": "Sync branches with remote",
+            "description": {
+              "content": "Logical representation of `gt sync`: pull from remote, delete merged PRs, and restack local branches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stacks",
+                "sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f570cc2-7a67-443b-a5dc-f39b890a98b8",
+              "name": "Local stack synced with remote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stacks",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"restacked\": [\n    \"string\",\n    \"string\"\n  ],\n  \"deleted\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.graphite.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "595546a7-3a4a-424d-b5e9-7cc8db01c4e9",
+    "name": "Graphite Platform Authentication Stacks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub's APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.\n\nContact Support:\n Name: Graphite Support",
+      "type": "text/plain"
+    }
+  }
+}

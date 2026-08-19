@@ -10,21 +10,18 @@ server:
   args:
   - mcp
   url: null
-  note: >-
-    GT MCP is a LOCAL stdio MCP server built into the Graphite CLI — there is no
-    hosted/remote HTTP MCP endpoint. It requires `gt` version 1.6.7 or higher.
+  note: GT MCP is a LOCAL stdio MCP server built into the Graphite CLI — there is no hosted/remote HTTP
+    MCP endpoint. It requires `gt` version 1.6.7 or higher.
 requirements:
   cli_package: '@withgraphite/graphite-cli'
   minimum_version: 1.6.7
   install: brew install withgraphite/tap/graphite
   install_alt: npm install -g @withgraphite/graphite-cli@stable
-  authentication: >-
-    Inherits the authenticated `gt` CLI session (gt auth --token <token>, or the
-    GRAPHITE_AUTH_TOKEN environment variable).
-purpose: >-
-  Lets AI agents automatically create stacked pull requests, breaking large
-  AI-generated diffs into smaller, sequential, reviewable PRs so a reviewer (and
-  the agent itself) can reason through the change chronologically.
+  authentication: Inherits the authenticated `gt` CLI session (gt auth --token <token>, or the GRAPHITE_AUTH_TOKEN
+    environment variable).
+purpose: Lets AI agents automatically create stacked pull requests, breaking large AI-generated diffs
+  into smaller, sequential, reviewable PRs so a reviewer (and the agent itself) can reason through the
+  change chronologically.
 clients:
 - name: Cursor
   config:
@@ -38,12 +35,9 @@ clients:
   install: claude mcp add graphite gt mcp
 tools:
   status: not-enumerated
-  note: >-
-    Graphite does not publish a tools/list manifest and the server is stdio-only
-    (no remote endpoint to introspect anonymously), so the tool names and
-    inputSchemas are NOT recorded here. Enumerating them requires running
-    `gt mcp` locally with an authenticated CLI. NOT fabricated — left empty on
-    purpose.
+  note: Graphite does not publish a tools/list manifest and the server is stdio-only (no remote endpoint
+    to introspect anonymously), so the tool names and inputSchemas are NOT recorded here. Enumerating
+    them requires running `gt mcp` locally with an authenticated CLI. NOT fabricated — left empty on purpose.
 related:
   agent_skill: skills/_index.yml
   cli: cli/graphite-cli.yml
@@ -52,3 +46,8 @@ x-evidence:
   url: https://graphite-58cc94ce.mintlify.dev/docs/gt-mcp.md
   http_status: 200
   content_type: text/markdown
+deployment:
+  mode: local-stdio
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census

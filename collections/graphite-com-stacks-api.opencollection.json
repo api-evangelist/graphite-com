@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Graphite Platform Authentication Stacks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a stacked branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.graphite.dev/stacks/branches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logical representation of `gt create`: create a new branch stacked on the current branch with committed changes."
+        },
+        {
+          "info": {
+            "name": "Submit a stack to GitHub",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.graphite.dev/stacks/submit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logical representation of `gt submit`: push stacked branches to GitHub and create or update their pull requests."
+        },
+        {
+          "info": {
+            "name": "Sync branches with remote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.graphite.dev/stacks/sync"
+          },
+          "docs": "Logical representation of `gt sync`: pull from remote, delete merged PRs, and restack local branches."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

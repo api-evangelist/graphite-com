@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Graphite Platform Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate the gt CLI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.graphite.dev/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logical representation of `gt auth`, which registers a Graphite auth token so the CLI can create and update pull requests on the user's behalf. The token is obtained from the Graphite web app."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

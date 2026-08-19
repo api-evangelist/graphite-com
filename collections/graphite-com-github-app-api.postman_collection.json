@@ -1,0 +1,181 @@
+{
+  "item": [
+    {
+      "id": "62e12b15-95fc-404c-84ce-ee2befbfedaa",
+      "name": "GitHub App",
+      "description": {
+        "content": "GitHub App install and webhook integration entry points.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "03acb512-4eb0-4716-848a-2e6b0134540e",
+          "name": "Install the Graphite GitHub App",
+          "request": {
+            "name": "Install the Graphite GitHub App",
+            "description": {
+              "content": "Entry point to install the Graphite GitHub App on an organization. The installed app receives GitHub webhooks for CI status, mergeability, and push events and calls GitHub's APIs with fine-grained permissions and short-lived tokens. Served by GitHub, not by Graphite.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "apps",
+                "graphite-app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c5ebc2a-4983-46cd-b274-9b06c4ec3c4c",
+              "name": "GitHub App installation page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    "graphite-app"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ad8cd6b-bdbb-400a-9b27-11702ea5c62c",
+          "name": "Graphite GitHub Marketplace listing",
+          "request": {
+            "name": "Graphite GitHub Marketplace listing",
+            "description": {
+              "content": "The Graphite listing on the GitHub Marketplace, from which an organization owner can install the app. Served by GitHub.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "graphite-dev"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "754a17c4-72b0-43a5-8bb8-ebcd9f4c7c87",
+              "name": "GitHub Marketplace listing page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "graphite-dev"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.graphite.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "96fde930-38e9-4b2d-991d-3823ab76adf3",
+    "name": "Graphite Platform Authentication GitHub App API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub's APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.\n\nContact Support:\n Name: Graphite Support",
+      "type": "text/plain"
+    }
+  }
+}

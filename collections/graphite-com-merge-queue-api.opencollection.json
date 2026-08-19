@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Graphite Platform Authentication Merge Queue API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merge Queue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Merge a stack of pull requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.graphite.dev/stacks/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Logical representation of `gt merge`: merge pull requests from trunk through the current branch via Graphite, optionally through the merge queue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Graphite Platform Authentication GitHub App API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GitHub App",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Install the Graphite GitHub App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.graphite.dev/apps/graphite-app"
+          },
+          "docs": "Entry point to install the Graphite GitHub App on an organization. The installed app receives GitHub webhooks for CI status, mergeability, and push events and calls GitHub's APIs with fine-grained permissions and short-lived tokens. Served by GitHub, not by Graphite."
+        },
+        {
+          "info": {
+            "name": "Graphite GitHub Marketplace listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.graphite.dev/marketplace/graphite-dev"
+          },
+          "docs": "The Graphite listing on the GitHub Marketplace, from which an organization owner can install the app. Served by GitHub."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
