@@ -31,7 +31,7 @@ tags:
 - GitHub
 created: '2026-06-20'
 modified: '2026-08-04'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: graphite-com:graphite-com-authentication-api
   name: Graphite Authentication API
