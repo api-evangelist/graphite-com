@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Graphite Platform Authentication Stacks API
-  description: 'Graphite does not publish a standalone public REST API. Graphite is built on top of GitHub: it installs as a GitHub App (graphite-app) that consumes GitHub webhooks and calls GitHub''s APIs with short-lived tokens, and it is driven by the gt CLI which authenticates with a Graphite auth token. This OpenAPI models the real, observable surface area as logical operations: the GitHub App install entry point and the documented gt CLI stacked-PR workflow operations. Endpoint paths for CLI operations are illustrative of the platform actions the CLI performs and are not a documented public HTTP contract.'
+  title: Graphite Platform Stacks API
+  description: Graphite does not publish a standalone public REST API.
   termsOfService: https://graphite.dev/terms
   contact:
     name: Graphite Support
@@ -76,16 +76,25 @@ paths:
                 $ref: '#/components/schemas/SyncResult'
 components:
   schemas:
-    Branch:
+    PullRequest:
       type: object
       properties:
-        name:
+        number:
+          type: integer
+        title:
           type: string
-        parent:
+        branch:
           type: string
-          description: Parent branch in the stack.
-        trunk:
-          type: boolean
+        url:
+          type: string
+          format: uri
+        state:
+          type: string
+          enum:
+          - draft
+          - open
+          - merged
+          - closed
     SyncResult:
       type: object
       properties:
@@ -97,6 +106,16 @@ components:
           type: array
           items:
             type: string
+    Branch:
+      type: object
+      properties:
+        name:
+          type: string
+        parent:
+          type: string
+          description: Parent branch in the stack.
+        trunk:
+          type: boolean
     CreateBranchRequest:
       type: object
       properties:
@@ -120,25 +139,6 @@ components:
           type: boolean
         publish:
           type: boolean
-    PullRequest:
-      type: object
-      properties:
-        number:
-          type: integer
-        title:
-          type: string
-        branch:
-          type: string
-        url:
-          type: string
-          format: uri
-        state:
-          type: string
-          enum:
-          - draft
-          - open
-          - merged
-          - closed
   securitySchemes:
     graphiteAuthToken:
       type: http
