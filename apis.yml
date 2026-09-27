@@ -9,17 +9,20 @@ description: Graphite is a code review platform built on top of GitHub for stack
   the gt CLI (authenticated with a Graphite token), the GT MCP server, and label / GitHub-mediated integrations
   (Slack, Linear, external merge queue).
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - withgraphite/agent-skills
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
