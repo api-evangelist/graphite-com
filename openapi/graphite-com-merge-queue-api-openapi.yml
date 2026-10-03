@@ -40,12 +40,6 @@ paths:
                 $ref: '#/components/schemas/MergeResult'
 components:
   schemas:
-    MergeRequest:
-      type: object
-      properties:
-        useMergeQueue:
-          type: boolean
-          description: Route the merge through the Graphite merge queue.
     MergeResult:
       type: object
       properties:
@@ -55,6 +49,12 @@ components:
             type: string
         enqueued:
           type: boolean
+    MergeRequest:
+      type: object
+      properties:
+        useMergeQueue:
+          type: boolean
+          description: Route the merge through the Graphite merge queue.
   securitySchemes:
     graphiteAuthToken:
       type: http
