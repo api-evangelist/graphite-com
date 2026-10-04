@@ -178,6 +178,9 @@ apis:
   - type: Documentation
     url: https://graphite.com/docs/insights-stats-definitions
 common:
+- type: CapabilityMap
+  url: capabilities/graphite-com-capability-edges.yml
+  name: Graphite Business Capability Map
 - type: IssueTracker
   url: https://github.com/withgraphite/agent-skills/issues
 - type: AgenticAccess
