@@ -42,13 +42,6 @@ paths:
           description: Invalid or expired auth token.
 components:
   schemas:
-    AuthResult:
-      type: object
-      properties:
-        authenticated:
-          type: boolean
-        user:
-          type: string
     AuthRequest:
       type: object
       properties:
@@ -57,6 +50,13 @@ components:
           description: Graphite auth token copied from the web app.
       required:
       - token
+    AuthResult:
+      type: object
+      properties:
+        authenticated:
+          type: boolean
+        user:
+          type: string
   securitySchemes:
     graphiteAuthToken:
       type: http

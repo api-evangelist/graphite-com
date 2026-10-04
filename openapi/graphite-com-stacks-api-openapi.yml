@@ -76,6 +76,16 @@ paths:
                 $ref: '#/components/schemas/SyncResult'
 components:
   schemas:
+    SubmitRequest:
+      type: object
+      properties:
+        stack:
+          type: boolean
+          description: Submit the entire stack rather than only the current branch.
+        draft:
+          type: boolean
+        publish:
+          type: boolean
     Branch:
       type: object
       properties:
@@ -86,6 +96,19 @@ components:
           description: Parent branch in the stack.
         trunk:
           type: boolean
+    CreateBranchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+          description: Commit message for the new branch.
+        all:
+          type: boolean
+          description: Stage all changes before committing.
+      required:
+      - name
     PullRequest:
       type: object
       properties:
@@ -105,29 +128,6 @@ components:
           - open
           - merged
           - closed
-    SubmitRequest:
-      type: object
-      properties:
-        stack:
-          type: boolean
-          description: Submit the entire stack rather than only the current branch.
-        draft:
-          type: boolean
-        publish:
-          type: boolean
-    CreateBranchRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        message:
-          type: string
-          description: Commit message for the new branch.
-        all:
-          type: boolean
-          description: Stage all changes before committing.
-      required:
-      - name
     SyncResult:
       type: object
       properties:
