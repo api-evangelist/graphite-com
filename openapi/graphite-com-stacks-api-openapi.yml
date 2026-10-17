@@ -76,6 +76,17 @@ paths:
                 $ref: '#/components/schemas/SyncResult'
 components:
   schemas:
+    SyncResult:
+      type: object
+      properties:
+        restacked:
+          type: array
+          items:
+            type: string
+        deleted:
+          type: array
+          items:
+            type: string
     SubmitRequest:
       type: object
       properties:
@@ -96,19 +107,6 @@ components:
           description: Parent branch in the stack.
         trunk:
           type: boolean
-    CreateBranchRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        message:
-          type: string
-          description: Commit message for the new branch.
-        all:
-          type: boolean
-          description: Stage all changes before committing.
-      required:
-      - name
     PullRequest:
       type: object
       properties:
@@ -128,17 +126,19 @@ components:
           - open
           - merged
           - closed
-    SyncResult:
+    CreateBranchRequest:
       type: object
       properties:
-        restacked:
-          type: array
-          items:
-            type: string
-        deleted:
-          type: array
-          items:
-            type: string
+        name:
+          type: string
+        message:
+          type: string
+          description: Commit message for the new branch.
+        all:
+          type: boolean
+          description: Stage all changes before committing.
+      required:
+      - name
   securitySchemes:
     graphiteAuthToken:
       type: http
