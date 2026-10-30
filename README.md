@@ -1,4 +1,4 @@
-# Graphite (graphite-com)
+# Graphite
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,160 +66,139 @@
 
 Graphite is a code review platform built on top of GitHub for stacking pull requests, AI code review, and merging at scale. The gt CLI creates and submits stacked PRs, Graphite Agent (Diamond) provides codebase-aware AI review and chat, and a merge queue batches and tests PRs in parallel. Graphite has no standalone public REST API - it integrates through a GitHub App that consumes GitHub webhooks, the gt CLI (authenticated with a Graphite token), the GT MCP server, and label / GitHub-mediated integrations (Slack, Linear, external merge queue).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/graphite-com/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/graphite-com/refs/heads/main/apis.yml)
+**Areas:** Code Review · Stacked PRs · Merge Queue · AI Code Review · Developer Tools · GitHub
 
-## Tags
+## Graphite on APIs.io
 
-- Code Review
-- Stacked PRs
-- Merge Queue
-- AI Code Review
-- Developer Tools
-- GitHub
+Everything profiled for Graphite is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/graphite-com/](https://apis.io/providers/graphite-com/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Graphite Authentication API](https://apis.io/apis/graphite-com/graphite-com-authentication-api/) — Graphite CLI authentication with a Graphite auth token.
+- [Graphite GitHub App API](https://apis.io/apis/graphite-com/graphite-com-github-app-api/) — GitHub App install and webhook integration entry points.
+- [Graphite Merge Queue API](https://apis.io/apis/graphite-com/graphite-com-merge-queue-api/) — Graphite merge queue actions.
+- [Graphite Stacks API](https://apis.io/apis/graphite-com/graphite-com-stacks-api/) — Create, submit, sync, and merge stacked pull requests via the gt CLI.
 
-## APIs
+### Published properties
 
-### Graphite GitHub App
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Graphite installs as a GitHub App (graphite-app) on an organization to receive GitHub webhooks for real-time updates on CI status, mergeability, and push events, and to call GitHub's APIs with fine-grained permissions and short-lived tokens. GitHub is the only git provider Graphite integrates with; there is no standalone Graphite-hosted REST API.
+#### MCP servers (1)
 
-- **Human URL:** [https://graphite.com/docs/authenticate-with-github-app](https://graphite.com/docs/authenticate-with-github-app)
-- **Base URL:** `https://github.com/apps/graphite-app`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [graphite](https://apis.io/servers/graphite-com/graphite/)
 
-- GitHub App
-- Webhooks
-- Authentication
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://graphite.com/docs/authenticate-with-github-app)
-- [API Reference](https://github.com/marketplace/graphite-dev)
-- [OpenAPI](openapi/graphite-com-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/graphite-com.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/graphite-com.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Graphite Com Agentic Access](https://apis.io/agentic-access/graphite-com/graphite-com-agentic-access/)
 
-### Graphite CLI (gt)
+#### Collections (5)
 
-The gt command-line interface creates, stacks, submits, syncs, restacks, and merges pull requests from the terminal. It authenticates with a Graphite auth token (gt auth) and drives Graphite's hosted platform plus GitHub on the user's behalf.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://graphite.com/docs/cli-overview](https://graphite.com/docs/cli-overview)
-- **Base URL:** `https://app.graphite.dev`
+- [Graphite Platform](https://apis.io/collections/graphite-com/open-graphite-com/)
+- [Graphite Platform Authentication API](https://apis.io/collections/graphite-com/open-graphite-com-authentication-api/)
+- [Graphite Platform Authentication GitHub App API](https://apis.io/collections/graphite-com/open-graphite-com-github-app-api/)
+- [Graphite Platform Authentication Merge Queue API](https://apis.io/collections/graphite-com/open-graphite-com-merge-queue-api/)
+- [Graphite Platform Authentication Stacks API](https://apis.io/collections/graphite-com/open-graphite-com-stacks-api/)
 
-#### Tags
+#### Security (4)
 
-- CLI
-- Stacked PRs
-- Stacking
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Graphite Com Authentication](https://apis.io/security/graphite-com/graphite-com-authentication/)
+- [Graphite Com Domain Security](https://apis.io/security/graphite-com/graphite-com-domain-security/)
+- [Graphite Com Trust Center](https://apis.io/security/graphite-com/graphite-com-trust-center/)
+- [Graphite Com Vulnerability Disclosure](https://apis.io/security/graphite-com/graphite-com-vulnerability-disclosure/)
 
-- [Documentation](https://graphite.com/docs/cli-overview)
-- [API Reference](https://graphite.com/docs/command-reference)
-- [OpenAPI](openapi/graphite-com-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/graphite-com.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/graphite-com.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Graphite GT MCP Server
+Published plans, tiers and prices.
 
-GT MCP is a Model Context Protocol server built into the Graphite CLI (gt mcp) that lets AI agents in tools like Cursor and Claude Code automatically break large changes into smaller, reviewable stacked pull requests. It is a local MCP server over the CLI, not a remote HTTP API.
+- [Graphite Com Plans Pricing](https://apis.io/plans/graphite-com/graphite-com-plans-pricing/)
 
-- **Human URL:** [https://graphite.com/docs/gt-mcp](https://graphite.com/docs/gt-mcp)
-- **Base URL:** `https://graphite.com/docs/gt-mcp`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- MCP
-- Model Context Protocol
-- AI Agents
+- [Graphite Com Rate Limits](https://apis.io/rate-limits/graphite-com/graphite-com-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://graphite.com/docs/gt-mcp)
-- [OpenAPI](openapi/graphite-com-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/graphite-com.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/graphite-com.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Graphite Agent (Diamond) AI Code Review
+- [Graphite Com Finops](https://apis.io/finops/graphite-com/graphite-com-finops/)
 
-Graphite Agent (formerly Diamond, now unified with Graphite Chat) is a codebase-aware AI code review agent that comments on pull requests, answers questions, and helps fix and iterate on code. It is triggered on PRs through the Graphite platform and configured via repository settings, not via a public API.
+## Where to find this API
 
-- **Human URL:** [https://graphite.com/docs/ai-reviews](https://graphite.com/docs/ai-reviews)
-- **Base URL:** `https://app.graphite.dev`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- AI Code Review
-- Diamond
-- Code Review
-
-#### Properties
-
-- [Documentation](https://graphite.com/docs/ai-reviews)
-- [Documentation](https://graphite.com/docs/ai-review-customization)
-- [OpenAPI](openapi/graphite-com-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/graphite-com.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/graphite-com.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Graphite Merge Queue
-
-The Graphite merge queue batches and tests multiple PRs in parallel once they are ready, reducing wait times and merge conflicts. Integration with an external merge queue is label-based and GitHub-mediated rather than exposed as an HTTP API.
-
-- **Human URL:** [https://graphite.com/docs/graphite-merge-queue](https://graphite.com/docs/graphite-merge-queue)
-- **Base URL:** `https://app.graphite.dev`
-
-#### Tags
-
-- Merge Queue
-- CI
-- Automation
-
-#### Properties
-
-- [Documentation](https://graphite.com/docs/graphite-merge-queue)
-- [Documentation](https://graphite.com/docs/external-merge-queue-integration)
-- [OpenAPI](openapi/graphite-com-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/graphite-com.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/graphite-com.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Graphite Insights
-
-Graphite Insights tracks team engineering velocity (PR throughput, review latency, and related stats) over indexed repositories, surfaced in the Graphite web app. No public analytics API is documented.
-
-- **Human URL:** [https://graphite.com/docs/insights](https://graphite.com/docs/insights)
-- **Base URL:** `https://app.graphite.dev`
-
-#### Tags
-
-- Insights
-- Analytics
-- Engineering Velocity
-
-#### Properties
-
-- [Documentation](https://graphite.com/docs/insights)
-- [Documentation](https://graphite.com/docs/insights-stats-definitions)
-- [OpenAPI](openapi/graphite-com-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/graphite-com.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/graphite-com.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/withgraphite)
-- [LinkedIn](https://www.linkedin.com/company/graphite-dev)
 - [Website](https://graphite.dev)
 - [Documentation](https://graphite.com/docs)
-- [Plans](plans/graphite-com-plans-pricing.yml)
-- [Rate Limits](rate-limits/graphite-com-rate-limits.yml)
-- [Fin Ops](finops/graphite-com-finops.yml)
+- [Getting started](https://graphite.com/docs/get-started)
+- [Pricing](https://graphite.com/pricing)
+- [Sign up](https://app.graphite.com/signup)
+- [Blog](https://graphite.com/blog)
+- [Security](https://graphite.com/docs/privacy-and-security)
+- [Terms of service](https://graphite.com/terms-of-service)
+- [Privacy policy](https://graphite.com/privacy)
+- [GitHub](https://github.com/withgraphite)
+- [Status](https://status.graphite.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 54.3** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 48.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 69.0 |
+| Access clarity | 53.9 |
+
+**Agent readiness 29.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/graphite-com/](https://apis.io/providers/graphite-com/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Graphite: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/graphite-com/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
